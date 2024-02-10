@@ -3,11 +3,11 @@
 ## Installing the prerequisites
 
 ```shell-session
-$ apt update
-$ apt install git gcc g++ make python3-dev python3-pip libxml2-dev libxslt1-dev zlib1g-dev gettext curl redis-server
-$ curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-$ apt install nodejs
-$ npm install -g sass postcss-cli postcss autoprefixer
+# apt update
+# apt install git gcc g++ make python3-dev python3-pip libxml2-dev libxslt1-dev zlib1g-dev gettext curl redis-server
+# curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+# apt install nodejs
+# npm install -g sass postcss-cli postcss autoprefixer
 ```
 
 ## Creating the database
@@ -17,8 +17,8 @@ Next, we will set up the database using MariaDB. The DMOJ is only tested to work
 When asked, you should select the latest MariaDB version.
 
 ```shell-session
-$ apt update
-$ apt install mariadb-server libmysqlclient-dev
+# apt update
+# apt install mariadb-server default-libmysqlclient-dev
 ```
 
 The next step is to set up the database itself. You should execute the commands listed below to create the necessary database and user.
@@ -128,7 +128,7 @@ The DMOJ uses Celery workers to perform most of its heavy lifting, such as batch
 Start up the Redis server, which is needed by the Celery workers.
 
 ```shell-session
-$ service redis-server start
+$ systemctl start redis-server
 ```
 
 Configure `local_settings.py` by uncommenting `CELERY_BROKER_URL` and `CELERY_RESULT_BACKEND`. By default, Redis listens on localhost port 6379, which is reflected in `local_settings.py`. You will need to update the addresses if you changed Redis's settings.
